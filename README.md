@@ -8,15 +8,17 @@
 
 ### The BlocklyScriptGame folder
 * This folder contains the pages of your BlocklyScript website.
-* In order to login to the site open a browser and visit the BlocklyScriptGame/login.php
 * From login.php you can login to the home page of the game or redirect to register page where you can create a new account
+* Since some files are .php, you have to run a web server (e.g. Apache) and a browser. For example XAMPP is a great PHP development environment with which you can test the game locally by placing the BlocklyScriptGame folder inside of htdocs folder(it's inside of XAMPP installation folder).
+* After that open XAMPP (Control Panel) and "Start" Apache and MySQL.
+* Visit localhost/BlocklyScriptDB/login.php from your browser to see the login page.
 
 ### The BlocklyScriptDataBase folder
 * This folder contais the sql dump (exported database) used for saving user's progression inside the game.
 * You will have to create a database and import the id14854195_blocklyscript.sql
 
 ### Use phpMyAdmin to create a database and import the id14854195_blocklyscript.sql
-* Open phpMyAdmin and create a database
+* Open phpMyAdmin and create a database. If you use XAMPP and pressed "Start" on MySQL, then visit localhost/phpmyadmin from your browser.
 * Select the database you just created and find the import tab on the left panel
 * Open the id14854195_blocklyscript.sql and click "Go"
 * Done
