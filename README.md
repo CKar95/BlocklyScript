@@ -1,1 +1,1 @@
-![](BlocklyScriptGame/Game/assets/IdleGirl.png)
+![](BlocklyScriptGame/Game/assets/BlocklyGame.png)
