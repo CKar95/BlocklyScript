@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Page title</title>
+		<script src="../acorn_interpreter.js"></script>
+		<script src="../blockly_compressed.js"></script>
+		<script src="../javascript_compressed.js"></script>
+		<script src="../blocks_compressed.js"></script>
+		<script src="../en.js"></script>
+		<script src="blocks_def.js"></script>
+		<script src="blocks_stub.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/phaser@3.20.0/dist/phaser-arcade-physics.min.js"></script>
+		<link rel="stylesheet" href="../levelStyle.css">  
+		<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w"
+		crossorigin="anonymous">
+	</head>
+	<body>
+	 
+	<!-- your content will go there..  -->
+
+		<div id = "wrapper">
+			<div class="header">
+			<a href="../index.php" id="home">Home</a>
+			<a href="../Level8-GR/index.html" id="languageSel">Change language to English</a>
+			<h3>Level 8: Nested if</h3></div>
+			<div>
+				<div class="leftpanel" id="phaserDiv">
+					<div id="phaserDivCanvas"></div>
+				
+				</div>
+				<div class="rightpanel" id="blocklyDiv"></div>
+			</div>
+			
+			<div>
+				<div class="leftpanel">
+					<div id="levelTips" disabled="disabled"> <h2 style="color: purple;">Instructions: Level 8</h2>
+					<p style="text-align:center;"><span style="color: #ff00ff; font-size:32px;"><b>Old Goals</b></span>: Collect all the stars, defeat the alien and avoid the spikes!</p>
+					<p style="text-align:center;"><span style="color: #ff00ff; font-size:32px;"><b>New Goals</b></span>: Collect all the balloons(<img src="../assets/balloon.png" alt="Star" height="32" width="32">) !</p>
+					<p><span class="spanPlayerName" style="color: white;"></span> just made it at Level 8 of Blocklyland. At this Level you can see some colorful balloons flying on top of some colorful stars. Help <span class="spanPlayerName" style="color: white;"></span> to collect those balloons so you can use them later and send all the stars you have collected back to the sky.</p>
+					<br>
+					
+					<p><span style="color: blue;"><b>Important Block: </b></span></p>
+					<p>- <span style="color: blue;"><b>if (condition) inside an if (condition)</b></span> (<img src="../assets/ifInsideIf.png" alt="Star" height="100" width="200">). When you place an "if" block inside an "if" block as the previous image shows, then the second "if" block is called <b>Nested if</b>. When you use 2 "if" blocks inside each other then you can check two conditions and if those conditions are true you can execute the blocks you put inside the do area. In our image example the first condition checks if <span class="spanPlayerName" style="color: white;"></span> is on top of a red star. If <span class="spanPlayerName" style="color: white;"></span> stands on top of a red star then the condition is true and then checks for the "Nested if" condition, which sees if the colorful star that the adventurer stands on has a balloon. The balloons have the same color as the stars beneath them.</p>
+					<br>
+					
+					<p><span style="color: blue;"><b>New Blocks: </b></span></p>
+					<p>- <span style="color: blue;"><b>star has balloon on top</b></span> (<img src="../assets/starHasBalloon.png" alt="Star" height="25" width="150">). With this block you can check if the star <span class="spanPlayerName" style="color: white;"></span> stands on has a balloon on top of it. <span style="color: red;font-size: 18px;">Important: You should always collect the balloon first and then collect the star. Otherwise if you collect the star first and then check if the star has a balloon on top of it, <span class="spanPlayerName" style="color: white;"></span> will get confused and forget that there was a star there.</span></p>
+					
+					<p>- <span style="color: blue;"><b>jump and collect option balloon</b></span> (<img src="../assets/collectBalloon.png" alt="Star" height="25" width="150">). With this block <span class="spanPlayerName" style="color: white;"></span></span> can jump and collect the colorful balloon of your choice</p>
+					<br>
+					
+					
+					<p><span style="color: gray;"><b>Attention: </b></span>Every time you hit the <span style="color: gray;">Reset Game</span> button, <span class="spanPlayerName" style="color: white;"></span> loses 10 score points.</p>
+					
+					<p><span style="color: green;font-size:20px;">Always Remember:</span> <span class="spanPlayerName" style="color: white;"></span> moves 100 pixels at a time. The distance between 2 stars is 100 pixels.</p>
+					<p>Now it's time to clear this level!</p>
+					
+					</div>
+				
+				</div>
+				<div class="rightpanel">
+					<p>
+						<button class="button-success pure-button" onclick="runCode()" id="runButton">Run Game</button>
+						<button class="button-success pure-button" onclick="resetGame()" id="resetButton">Reset Game</button>
+						<button class="button-success pure-button"  id="nextLevel" disabled><a href="../Level9/index.html">Next Level</a></button>
+						<button class="button-success pure-button"  onclick="showHelp()" id="help">Help ! ! !</button>
+						<span class="button-success pure-button" id="badgeArea">Solution reward: <img id="levelbadge" src="../assets/noReward.png"  style="vertical-align:middle" height="35px" alt=" "></span>
+					</p>
+					<br>
+					<textarea id="output" disabled="disabled"> </textarea>
+				</div>
+			</div>
+		</div>
+
+
+		<xml id="toolbox" style="display: none">
+		
+				<category name="Start" colour="120">
+				<block type="start_point"></block>
+				</category>
+				<category name="Movement" colour="300">
+					<block type="move_left"></block>
+					<block type="move_right"></block>
+					<block type="move_up"></block>
+				</category>
+				<category name="Repeat" colour="120">
+					<block type="controls_repeat"></block>
+					<block type="repeat_until"></block>
+				</category>
+				<category name="Laser beam" colour="345">
+					<block type="laser_beam"></block>
+					<block type="laser_beamdirection"></block>
+				</category>
+				<category name="If color / collect" colour="210">
+					<block type="controls_if"></block>
+				<block type="star_color"></block>			
+				<block type="star_hasballon"></block>
+				<block type="collect_star"></block>
+				<block type="collect_balloon"></block>
+				</category>
+			
+			
+			
+		</xml>
+		
+		<!-- Modal -->
+		<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+   
+
+<br>
+<br>
+<br>
+
+<div id="level1">
+					<h2>Level 1 - Movement</h2>
+					<p>- Top left corner: This is your <span style="color: red;">Game area</span>. This is where <span class="spanPlayerName" style="color: white;"></span>   lives. You can interact with <span class="spanPlayerName" style="color: white;"></span> by placing blocks into the Blockly area.</p>
+					<p>- Top right corner: This is the <span style="color: blue;">Blockly area</span> where your commands (blocks) reside. You can drag and drop blocks inside the white area and when you hit the <span style="color: Teal;">Run game</span> button, <span class="spanPlayerName" style="color: white;"></span> will take action.</p>
+					<p>- Bottom left corner: This is the <span style="color: purple;">Instructions area</span>. Here you will learn about the functionality of the blocks, your goals and information about new enemies.</p>
+					<p>- Bottom right corner: This is the <span style="color: gray;">Run game output area</span>. Over this area you can see how many blocks you used, which types and how many times you reseted the game. You will also get a usefull tip in some cases.</p>
+					<br>
+					<p>Blocks Functionality: </p>
+					<p>-  Block start (<img src="../assets/block_start.png" alt="start" height="29" width="85">): This is always the first block of your commands. Place this block first.</p>
+					<p>-  Block move left (<img src="../assets/block_moveLeft.png" alt="move left" height="29" width="85">): This block will move <span class="spanPlayerName" style="color: white;"></span> to the left by 100 pixels. <span style="color: red; font-size: 30px;">100 pixels is the distance between 2 stars.</span></p>
+					<p>-  Block move right (<img src="../assets/block_moveRight.png" alt="move right" height="29" width="85">): This block will move <span class="spanPlayerName" style="color: white;"></span> to the right by 100 pixels.</p>
+					<br>
+					
+
+</div>
+
+<div id="level2">
+					<h2>Level 2 - Jump</h2>
+					<p><span style="color: red;"><b>New Obstacles: </b></span></p>
+					<p>- <span style="color: red;"><b>Spikes</b></span> (<img src="../assets/spikes.png" alt="Star" height="20" width="20">). Spikes are dangerous and will hurt everyone who steps on them. A hurted explorer won't follow your commands anymore.</p>
+					
+					<p><span style="color: blue;"><b>New Block: </b></span></p>
+					<p>- <span style="color: blue;"><b>Jump</b></span> (<img src="../assets/block_jump.png" alt="Star" height="29" width="85">). With the "jump" block you can tell <span class="spanPlayerName" style="color: white;"></span> to jump.<span style="color: blue;"> If you want to jump and move (left or right) at the same time then use the Jump block first and under the Jump block use the move (left or right) block.</span> </p>
+					<p><span style="color: gray;"><b>Attention: </b></span>From now on every time you hit the <span style="color: gray;">Reset Game</span> button, <span class="spanPlayerName" style="color: white;"></span> loses 10 score points.</p>
+					<p><span style="color: green;font-size:30px;">Always Remember:</span> <span class="spanPlayerName" style="color: white;"></span> moves 100 pixels at a time. The distance between 2 stars is 100 pixels.</p>
+					<p>Now it's time to clear this level!</p>
+					<br>
+					
+
+</div>
+
+<div id="level3">
+					<h2>Level 3 - Repeat 'n' times</h2>
+					
+					<p><span style="color: red;"><b>New Obstacles: </b></span></p>
+					<p>- <span style="color: red;"><b>Alien</b></span> (<img src="../assets/IdleAlien.png" alt="Star" height="20" width="20">). Aliens are attracted by the stars and they will attack anyone who gets near them.</p>
+					
+					<p><span style="color: blue;"><b>New Block: </b></span></p>
+					<p>- <span style="color: blue;"><b>Repeat 3 times</b></span> (<img src="../assets/repeatNTimes.png" alt="Star" height="50" width="120">). With the "repeat 3 times" block, as the name indicates you can repeat the same commands 3 times. You can change the number "3" to any number you like and the commands will be repeatd as many times as the number you placed inside the repeat block. For example, if you use repeat "2" times and inside the repeat block you place the "move right" block, then <span class="spanPlayerName" style="color: white;"></span> will move 2 stars to the right (200pixels).</p>
+					
+					<p>- <span style="color: blue;"><b>uses laser beam</b></span> (<img src="../assets/useLaserBeam.png" alt="Star" height="29" width="120">). With this block you prepare <span class="spanPlayerName" style="color: white;"></span> to shoot a laser beam.</p>
+					
+					<p>- <span style="color: blue;"><b>shoot laser beam</b></span> (<img src="../assets/shootBeamDir.png" alt="Star" height="29" width="120">). With this block you can guide <span class="spanPlayerName" style="color: white;"></span> at which direction to shoot the laser beam. </p>
+					<p><span style="color: gray;"><b>Attention: </b></span>Every time you hit the <span style="color: gray;">Reset Game</span> button, <span class="spanPlayerName" style="color: white;"></span> loses 10 score points.</p>
+					<p><span style="color: green;font-size:30px;">Always Remember:</span> <span class="spanPlayerName" style="color: white;"></span> moves 100 pixels at a time. The distance between 2 stars is 100 pixels.</p>
+					
+					<br>
+					
+
+</div>
+
+<div id="level4">
+					<h2>Level 4 - Repeat While</h2>
+					
+					<p><span style="color: red;"><b>New Obstacles: </b></span></p>
+					<p>- <span style="color: red;"><b>Wall</b></span> (<img src="../assets/wall.jpg" alt="Star" height="20" width="20">). A wall is an obstacle that will block your path. You can brake a wall by attacking it many times. The new "repeat while wall is (broken or not broken)" command will help you brake the wall.</p>
+					
+					<p><span style="color: blue;"><b>New Block: </b></span></p>
+					<p>- <span style="color: blue;"><b>Repeat while wall is (broken or not broken)</b></span> (<img src="../assets/repeatWhile.png" alt="Star" height="50" width="180">). This block will help you brake the wall. You have two options (broken or not broken). Those options are called conditions. <span style="color: blue;"><b>repeat while wall is (broken or not broken)</b></span> will keep repeating the blocks you put inside it as many times as your condition is true. For example when you start this level the wall inside the game is "not broken". If you keep attacking the wall then it will eventually brake. So you can use the <span style="color: blue;"><b>"repeat while wall is not broken"</b></span> block and inside it put the "use laser beam" block to attack the wall many times. When the wall is broken your <span style="color: blue;"><b>"repeat while wall is not broken"</b></span> block will stop repeating the blocks you used inside it .</p>
+					
+					
+					<p><span style="color: gray;"><b>Attention 1: </b></span>Every time you hit the <span style="color: gray;">Reset Game</span> button, <span class="spanPlayerName" style="color: white;"></span> loses 10 score points.</p>
+					<p><span style="color: gray;"><b>Attention 2: </b></span>If you don't place any blocks inside your  <span style="color: blue;"><b>repeat while wall is (broken or not broken)</b></span> and your condition is true, then <span class="spanPlayerName" style="color: white;"></span> will keep going left and right with out to know what to do.</p>
+					<p><span style="color: green;font-size:30px;">Always Remember:</span> <span class="spanPlayerName" style="color: white;"></span> moves 100 pixels at a time. The distance between 2 stars is 100 pixels.</p>
+					
+					<br>
+					
+
+</div>
+
+<div id="level5">
+					<h2>Level 5 - Repeat Until</h2>
+					
+					<p><span style="color: blue;"><b>New Block: </b></span></p>
+					<p>- <span style="color: blue;"><b>Repeat until wall is (broken or not broken)</b></span> (<img src="../assets/repeatUnti.png" alt="Star" height="50" width="180">). This block can help you brake the wall too. You have two options (broken or not broken). Remember those options are called conditions. <span style="color: blue;"><b>"repeat until wall is (broken or not broken)"</b></span> will keep repeating the blocks you put inside it as many times as your condition is <b>not true</b>. For example when you start this level the wall inside the game is "not broken". If you keep attacking the wall then it will eventually brake. So you can use the <span style="color: blue;"><b>"repeat until wall is broken"</b></span> block and inside it put use laser beam block to attack the wall many times. When the wall is broken your <span style="color: blue;"><b>"repeat until wall is broken"</b></span> block will stop repeating the blocks you used inside it .</p>
+					
+					
+					<p><span style="color: gray;"><b>Attention 1: </b></span>Every time you hit the <span style="color: gray;">Reset Game</span> button, <span class="spanPlayerName" style="color: white;"></span> loses 10 score points.</p>
+					<p><span style="color: gray;"><b>Attention 2: </b></span>If you don't place any blocks inside your  <span style="color: blue;"><b>repeat until wall is (broken or not broken)</b></span> and your condition is not true, then <span class="spanPlayerName" style="color: white;"></span> will keep going left and right with out to know what to do.</p>
+					<p><span style="color: green;font-size:30px;">Always Remember:</span> <span class="spanPlayerName" style="color: white;"></span> moves 100 pixels at a time. The distance between 2 stars is 100 pixels.</p>
+					
+					<br>
+					
+
+</div>
+
+<div id="level6">
+					<h2>Level 6 - Simple If</h2>
+					
+					<p><span style="color: blue;"><b>New Blocks: </b></span></p>
+					<p>- <span style="color: blue;"><b>if (condition)</b></span> (<img src="../assets/if.png" alt="Star" height="40" width="60">). We learned that conditions can be either true or false. If the condition is true then the blocks you put inside the "if" block are executed once without repeating. If you put an "if" block inside a "repeat" block then the "if" block will be executed as many times as your repeat block. </p>
+					<p>- <span style="color: blue;"><b>star has:"option" color</b></span> (<img src="../assets/starHasColor.png" alt="Star" height="30" width="120">). This is the <b>condition</b> of your "if" block. With this block you can check if <span class="spanPlayerName" style="color: white;"></span> steps on a red (or green or blue) star. If <span class="spanPlayerName" style="color: white;"></span> steps on the color you selected then the condition of the "if" block becomes true and the blocks you have putted inside it are executed.</p>
+					<p>- <span style="color: blue;"><b>collect "option" star</b></span> (<img src="../assets/collectColorStar.png" alt="Star" height="30" width="120">). With this block you can tell <span class="spanPlayerName" style="color: white;"></span> to collect the color you selected. <span class="spanPlayerName" style="color: white;"></span> must be on top of the colorful star in order to be collected. Collecting colorful stars is hard and that's why you tell the adventurer to collect the colorful star at the right time only. Otherwise you will waste a large amount of time.</p>
+					<br>
+					
+					
+					<p><span style="color: gray;"><b>Attention: </b></span>Every time you hit the <span style="color: gray;">Reset Game</span> button, <span class="spanPlayerName" style="color: white;"></span> loses 10 score points.</p>
+					
+					<p><span style="color: green;font-size:30px;">Always Remember:</span> <span class="spanPlayerName" style="color: white;"></span> moves 100 pixels at a time. The distance between 2 stars is 100 pixels.</p>
+					
+					<br>
+					
+
+</div>
+
+
+<div id="level7">
+					<h2>Level 7 - If - else</h2>
+					
+					<p><span style="color: blue;"><b>Important Block: </b></span></p>
+					<p>- <span style="color: blue;"><b>if (condition) else if (condition) else</b></span> (<img src="../assets/ifElseIf.png" alt="Star" height="100" width="150">). At Level 6 you learned how a simple "if" block works. Now it is time to create an <b>"else if"</b> control. If you check your "if" block you will see a little button (<img src="../assets/settingsIf.png" alt="Star" height="20" width="20">) on it. This button will help you expand your simple if block and check for more conditions. In our game there are 3 rare colorful types of stars (red, gree, blue). Whenever the adventurer steps on a colorful rare star you have to check what color it is inside your "if" or "else if" condition and if the condition is true you will have to tell <span class="spanPlayerName" style="color: white;"></span> to collect the right colorful star. <span class="spanPlayerName" style="color: white;"></span> will start by checking the first condition of your "if-else" block. If your first condition is true then <span class="spanPlayerName" style="color: white;"></span> will execute the command blocks you putted inside it and ingore the rest of the "else if" conditions. On the other hand if your first condition is false, then <span class="spanPlayerName" style="color: white;"></span> will look at the second "else if" condition and so on.</p>
+					
+					<br>
+					
+					
+					<p><span style="color: gray;"><b>Attention: </b></span>Every time you hit the <span style="color: gray;">Reset Game</span> button, <span class="spanPlayerName" style="color: white;"></span> loses 10 score points.</p>
+					
+					<p><span style="color: green;font-size:30px;">Always Remember:</span> <span class="spanPlayerName" style="color: white;"></span> moves 100 pixels at a time. The distance between 2 stars is 100 pixels.</p>
+					
+					<br>
+					
+
+</div>
+
+<div id="level8">
+					<h2>Level 8 - Nested if</h2>
+					
+					<p><span style="color: blue;"><b>Important Block: </b></span></p>
+					<p>- <span style="color: blue;"><b>if (condition) inside an if (condition)</b></span> (<img src="../assets/ifInsideIf.png" alt="Star" height="100" width="200">). When you place an "if" block inside an "if" block as the previous image shows, then the second "if" block is called <b>Nested if</b>. When you use 2 "if" blocks inside each other then you can check two conditions and if those conditions are true you can execute the blocks you put inside the do area. In our image example the first condition checks if <span class="spanPlayerName" style="color: white;"></span> is on top of a red star. If <span class="spanPlayerName" style="color: white;"></span> stands on top of a red star then the codition is true and then checks for the "Nested if" condition, which sees if the colorful star that the adventurer stands on has a balloon. The balloons have the same color as the stars beneath them.</p>
+					<br>
+					
+					<p><span style="color: blue;"><b>New Blocks: </b></span></p>
+					<p>- <span style="color: blue;"><b>star has balloon on top</b></span> (<img src="../assets/starHasBalloon.png" alt="Star" height="25" width="150">). With this block you can check if the star <span class="spanPlayerName" style="color: white;"></span> stands on has a balloon on top of it. <span style="color: blue;font-size: 30px;">Important: You should always collect the balloon first and then collect the star. Otherwise if you collect the star first and then check if the star has a balloon on top of it, <span class="spanPlayerName" style="color: white;"></span> will get confused and forget that there was a star there.</span></p>
+					
+					<p>- <span style="color: blue;"><b>jump and collect option balloon</b></span> (<img src="../assets/collectBalloon.png" alt="Star" height="25" width="150">). With this block <span class="spanPlayerName" style="color: white;"></span></span> can jump and collect the colorful balloon of your choice</p>
+					<br>
+					
+					
+					<p><span style="color: gray;"><b>Attention: </b></span>Every time you hit the <span style="color: gray;">Reset Game</span> button, <span class="spanPlayerName" style="color: white;"></span> loses 10 score points.</p>
+					
+					<p><span style="color: green;font-size:30px;">Always Remember:</span> <span class="spanPlayerName" style="color: white;"></span> moves 100 pixels at a time. The distance between 2 stars is 100 pixels.</p>
+					
+					<br>
+					
+
+</div>
+
+
+	
+  </div>
+  
+</div>
+<!-- Modal END-->
+				
+		<script src="blocklyScript.js"></script>
+		<script src="phaserScript.js"></script> 
+		
+		<script>
+					
+			var modal = document.getElementById("myModal");		
+			var span = document.getElementsByClassName("close")[0];
+
+
+
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+			  modal.style.display = "none";
+			}
+			
+			function showHelp() {
+			 modal.style.display = "block";
+			}
+		</script>
+			
+	</body>
+</html>

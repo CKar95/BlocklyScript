@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Page title</title>
+		<script src="../acorn_interpreter.js"></script>
+		<script src="../blockly_compressed.js"></script>
+		<script src="../javascript_compressed.js"></script>
+		<script src="../blocks_compressed.js"></script>
+		<script src="../en.js"></script>
+		<script src="blocks_def.js"></script>
+		<script src="blocks_stub.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/phaser@3.20.0/dist/phaser-arcade-physics.min.js"></script>
+		<link rel="stylesheet" href="../levelStyle.css">  
+		<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w"
+		crossorigin="anonymous">
+	</head>
+	<body>
+	 
+	<!-- your content will go there..  -->
+
+		<div id = "wrapper">
+			<div class="header">
+			<a href="../index.php" id="home">Home</a>
+			<a href="../Level12/index.html" id="languageSel">Change language to English</a>
+			<h3>Level 12: Restore the stars</h3></div>
+			<div>
+				<div class="leftpanel" id="phaserDiv">
+					<div id="phaserDivCanvas"></div>
+				
+				</div>
+				<div class="rightpanel" id="blocklyDiv"></div>
+			</div>
+			
+			<div>
+				<div class="leftpanel">
+					<div id="levelTips" disabled="disabled"> <h2 style="color: purple;">Οδηγίες: Επίπεδο 12</h2>
+					<p style="text-align:center;"><span style="color: #ff00ff; font-size:32px;"><b>Στόχος</b></span>: Στείλε τα αστέρια στο διάστημα ! ! !</p>
+					<br>
+					<br>
+					<p>Συγχαρητήρια ολοκλήρωσες όλα τα επίπεδα του BlocklyScript. Έμαθες αρκετά πράγματα κατά την διάρκεια του ταξιδιού σου στον πλανήτη Blocklyland. Μάζεψες πολλά αστέρια και τώρα είναι η στιγμή να τα στείλεις πίσω στην θέση τους στο διάστημα. Χρησιμοποίησε το Restore Stars μπλοκ και διέσωσε του Blockly πολίτες. Επέστρεψε το φως πίσω στον κόσμο.</p>
+					<br>
+					
+					
+					<br>
+					
+				
+					
+					
+					
+					</div>
+				
+				</div>
+				<div class="rightpanel">
+					<p>
+						<button class="button-success pure-button" onclick="runCode()" id="runButton">Run Game</button>
+						<button class="button-success pure-button" onclick="resetGame()" id="resetButton">Reset Game</button>
+						<button class="button-success pure-button"  id="nextLevel" disabled><a href="../checkResults.html">Check Results</a></button>
+					</p>
+					<br>
+					<textarea id="output" disabled="disabled"> </textarea>
+				</div>
+			</div>
+		</div>
+		
+		
+
+
+		<xml id="toolbox" style="display: none">
+		
+				<block type="start_point"></block>
+				<block type="restore_stars"></block>
+				
+				
+			
+			
+			
+			
+		</xml>
+				
+		<script src="blocklyScript.js"></script>
+		<script src="phaserScript.js"></script> 
+			
+	</body>
+</html>

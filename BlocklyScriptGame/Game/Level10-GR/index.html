@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Page title</title>
+		<script src="../acorn_interpreter.js"></script>
+		<script src="../blockly_compressed.js"></script>
+		<script src="../javascript_compressed.js"></script>
+		<script src="../blocks_compressed.js"></script>
+		<script src="../en.js"></script>
+		<script src="blocks_def.js"></script>
+		<script src="blocks_stub.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/phaser@3.20.0/dist/phaser-arcade-physics.min.js"></script>
+		<link rel="stylesheet" href="../levelStyle.css">  
+		<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w"
+		crossorigin="anonymous">
+	</head>
+	<body>
+	 
+	<!-- your content will go there..  -->
+
+		<div id = "wrapper">
+			<div class="header">
+			<a href="../index.php" id="home">Home</a>
+			<a href="../Level10/index.html" id="languageSel">Change language to English</a>
+			<h3>Level 10: Limited blocks</h3></div>
+			<div>
+				<div class="leftpanel" id="phaserDiv">
+					<div id="phaserDivCanvas"></div>
+				
+				</div>
+				<div class="rightpanel" id="blocklyDiv"></div>
+			</div>
+			
+			<div>
+				<div class="leftpanel">
+					<div id="levelTips" disabled="disabled"> <h2 style="color: purple;">Οδηγίες: Επίπεδο 10</h2>
+					<p style="text-align:center;"><span style="color: #ff00ff; font-size:32px;"><b>Στόχος</b></span>: Μάζεψε όλα τα αστέρια!</p>
+					
+					<p style="text-align:center;"><span style="color: #ff00ff; font-size:32px;"><b>Εκπαιδευτικός Στόχος</b></span>: Χρησιμοποίησε όλα τα διαθέσιμα μπλοκ για να κερδίσεις το επίπεδο.</p>
+					<br>
+					
+					<p>Μέχρι στιγμής ο/η <span class="spanPlayerName" style="color: white;"></span> συγκέντρωσε αρκετά αστέρια. Προσπάθησε να συγκεντρώσεις μερικά αστέρια ακόμα και να τα στείλεις πίσω στο διάστημα. Βρίσκεσαι κοντά στο στόχο σου.</p>
+					<br>
+					
+					<p><span style="color: blue;"><b>Περιορισμένα μπλοκ: </b></span></p>
+					<p>Τα μπλοκ που μπορείς να χρησιμοποιήσεις στο συγκεκριμένο επίπεδο είναι περιορισμένα. Χρησιμοποίησε τα με σύνεση. </p>
+					<p>Αυτά είναι τα διαθέσιμα μπλοκ:</p>
+					<p>- 1 START μπλοκ: <img src="../assets/block_start.png" alt="Star" height="30" width="100"></p>
+					<p>- 1 move left μπλοκ: <img src="../assets/block_moveLeft.png" alt="Star" height="30" width="100"></p>
+					<p>- 2 move right μπλοκ: <img src="../assets/block_moveRight.png" alt="Star" height="30" width="100"></p>
+					<p>- 2 jump blocks: <img src="../assets/block_jump.png" alt="Star" height="30" width="100"></p>
+					<p>- 2 repeat N times μπλοκ: <img src="../assets/repeatNTimes.png" alt="Star" height="40" width="100"></p>
+					<p>- 1 use laser beam μπλοκ: <img src="../assets/useLaserBeam.png" alt="Star" height="30" width="120"></p>
+					<p>- 1 shoot beam "option" μπλοκ: <img src="../assets/shootBeamDir.png" alt="Star" height="30" width="120"></p>
+					<p>- 2 method μπλοκ: <img src="../assets/method.png" alt="Star" height="40" width="200"></p>
+					<p>- 5 call method μπλοκ: <img src="../assets/callMethod.png" alt="Star" height="30" width="100"></p>
+					<br>
+					
+					<p><span style="color: gray;"><b>Προσοχή: </b></span>Κάθε φορά που πατάς το <span style="color: gray;">Reset Game</span> κουμπί, ο/η <span class="spanPlayerName" style="color: white;"></span> θα χάσει 10 πόντους από το σκορ.</p>
+					
+					<p><span style="color: green;font-size:20px;">Πάντα να θυμάσαι:</span> Ο/Η <span class="spanPlayerName" style="color: white;"></span> κινείται 100 pixels την φορά. Η απόσταση μεταξύ 2 αστεριών είναι 100 pixels.</p>
+					<p>Ήρθε η σειρά σου να κερδίσεις το Επίπεδο!</p>
+					
+					
+					
+					</div>
+				
+				</div>
+				<div class="rightpanel">
+					<p>
+						<button class="button-success pure-button" onclick="runCode()" id="runButton">Run Game</button>
+						<button class="button-success pure-button" onclick="resetGame()" id="resetButton">Reset Game</button>
+						<button class="button-success pure-button"  id="nextLevel" disabled><a href="../Level11-GR/index.html">Next Level</a></button>
+						<button class="button-success pure-button"  onclick="showHelp()" id="help">Help ! ! !</button>
+						<span class="button-success pure-button" id="badgeArea">Solution reward: <img id="levelbadge" src="../assets/noReward.png"  style="vertical-align:middle" height="35px" alt=" "></span>
+					</p>
+					<br>
+					<textarea id="output" disabled="disabled"> </textarea>
+				</div>
+			</div>
+		</div>
+		
+		
+
+
+		<xml id="toolbox" style="display: none">
+		
+				<block type="start_point"></block>
+				<block type="move_left"></block>
+				<block type="move_right"></block>
+				<block type="move_up"></block>
+				<block type="controls_repeat"></block>
+				<block type="laser_beam"></block>
+				<block type="laser_beamdirection"></block>
+				<block type="procedures_defnoreturn">
+				  <field name="NAME">do something</field>
+				  <comment pinned="false" h="80" w="160">Describe this function...</comment>
+				</block>
+				<block type="procedures_callnoreturn">
+				  <mutation name="do something"></mutation>
+				</block>
+				
+			
+			
+			
+			
+		</xml>
+		
+		<!-- Modal -->
+		<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+   
+
+<br>
+<br>
+<br>
+
+<div id="level1">
+					<h2>Level 1 - Movement</h2>
+					<p>- Πάνω αριστερή γωνία: Αυτή είναι <span style="color: red;">η περιοχή του παιχνιδιού</span>. Εδώ ζει ο/η <span class="spanPlayerName" style="color: white;"></span>. Μπορείς να καθοδηγήσεις τον/την <span class="spanPlayerName" style="color: white;"></span> τοποθετώντας μπλοκ στην περιοχή Blockly.</p>
+					<p>- Πάνω δεξιά γωνία: Αυτή είναι <span style="color: blue;">η περιοχή Blockly</span> όπου βρίσκονται οι εντολές (μπλοκ). Μπορείς να σύρεις και να αφήσεις τα μπλοκ μέσα στην άσπρη περιοχή και όταν πατήσεις το <span style="color: Teal;">Run game</span> κουμπί, ο/η <span class="spanPlayerName" style="color: white;"></span> θα ακολουθήσει τις εντολές σου.</p>
+					<p>- Κάτω αριστερή γωνία: Αυτή είναι <span style="color: purple;">η περιοχή των οδηγιών</span>. Εδώ θα μάθεις την λειτουργικότητα των μπλοκ, τους στόχους του επιπέδου και τους αντιπάλους σου.</p>
+					<p>- Κάτω δεξιά γωνία: Αυτή είναι <span style="color: gray;">η περιοχή εκτέλεσης του αποτελέσματος του παιχνιδιού</span>. Σε αυτήν την περιοχή μπορείς να δεις πόσα μπλοκ χρησιμοποίησες, ποιους τύπους μπλοκ και πόσες φορές επανεκκίνησες  το επίπεδο. Επίσης θα βρεις χρήσιμες συμβουλές σε μερικές περιπτώσεις.</p>
+					<br>
+					<p>Λειτουργικότητα των μπλοκ: </p>
+					<p>-  Block start (<img src="../assets/block_start.png" alt="start" height="29" width="85">): Αυτό είναι πάντα το πρώτο μπλοκ των εντολών σου. Τοποθέτησε αυτό το μπλοκ στη αρχή του αλγορίθμου.</p>
+					<p>-  Block move left (<img src="../assets/block_moveLeft.png" alt="move left" height="29" width="85">): Αυτό το μπλοκ θα μετακινήσει τον/την <span class="spanPlayerName" style="color: white;"></span> 100 pixel αριστερά. <span style="color: red; font-size: 22px;">100 pixel είναι η απόσταστη μεταξύ 2 αστεριών.</span></p>
+					<p>-  Block move right (<img src="../assets/block_moveRight.png" alt="move right" height="29" width="85">): Αυτό το μπλοκ θα μετακινήσει τον/την <span class="spanPlayerName" style="color: white;"></span> 100 pixel δεξιά.</p>
+					<br>
+					
+
+</div>
+
+<div id="level2">
+					<h2>Level 2 - Jump</h2>
+					<p><span style="color: red;"><b>Νέα εμπόδια: </b></span></p>
+					<p>- <span style="color: red;"><b>Καρφιά</b></span> (<img src="../assets/spikes.png" alt="Star" height="20" width="20">). Τα καρφιά είναι επικίνδυνα και θα τραυματίσουν οποιονδήποτε πατήσει επάνω τους. Ένας/Μια τραυματισμένος/η εξερευνητής δεν θα μπορέσει να υπακούσει τις εντολές σου.</p>
+					
+					<p><span style="color: blue;"><b>Νέο μπλοκ: </b></span></p>
+					<p>- <span style="color: blue;"><b>Jump</b></span> (<img src="../assets/block_jump.png" alt="Star" height="29" width="85">). Με το "jump" μπλοκ μπορείς να πεις τον/την <span class="spanPlayerName" style="color: white;"></span> να κάνει ένα άλμα.<span style="color: blue;"> Εάν επιθυμείς να κάνεις ένα άλμα και να κινηθείς ταυτόχρονα (δεξιά ή αριστερά) τότε χρησιμοποίησε το Jump μπλοκ πρώτα και κάτω από το Jump μπλοκ χρησιμοποίησε το move (left ή right) μπλοκ.</span> </p>
+					<p><span style="color: gray;"><b>Προσοχή: </b></span>Από τώρα και στο εξής, κάθε φορά που θα πατήσεις το <span style="color: gray;">Reset Game</span> κουμπί, ο/η <span class="spanPlayerName" style="color: white;"></span> θα χάσει 10 πόντους από το σκορ.</p>
+					<p><span style="color: green;font-size:20px;">Πάντα να θυμάσαι:</span> Ο/Η <span class="spanPlayerName" style="color: white;"></span> κινείται 100 pixels την φορά. Η απόσταση μεταξύ 2 αστεριών είναι 100 pixels.</p>
+					<p>Τώρα είναι η σειρά σου να κερδίσεις το επίπεδο. Καλή τύχη!</p>
+					<br>
+					
+
+</div>
+
+<div id="level3">
+					<h2>Level 3 - Repeat 'n' times</h2>
+					
+					<p><span style="color: red;"><b>Νέα Εμπόδια: </b></span></p>
+					<p>- <span style="color: red;"><b>Εξωγήινος</b></span> (<img src="../assets/IdleAlien.png" alt="Star" height="20" width="20">). Οι εξωγήινοι προσελκύονται  από  τα αστέρια και επιτίθενται  οποιονδήποτε τα πλησιάζει.</p>
+					
+					<p><span style="color: blue;"><b>Νέα μπλοκ: </b></span></p>
+					<p>- <span style="color: blue;"><b>Repeat 3 times</b></span> (<img src="../assets/repeatNTimes.png" alt="Star" height="29" width="85">). Με το "repeat 3 times" μπλοκ, όπως υποδηλώνει το όνομα του, μπορείς να επαναλάβεις τις ίδιες εντολές τρεις φορές. Μπορείς να αλλάξεις τον αριθμό "3" σε οποιονδήποτε αριθμό επιθυμείς και οι εντολές που θα χρησιμοποιήσεις στο σώμα του θα επαναληφθούν τόσες φορές όσες και ο αριθμός που χρησιμοποιήσεις στο repeat μπλοκ. Για παράδειγμα, εάν χρησιμοποιήσεις το repeat "2" times μπλοκ και μέσα στο repeat μπλοκ τοποθετήσεις το "move right" μπλοκ, τότε ο/η <span class="spanPlayerName" style="color: white;"></span> θα μετακινηθεί 2 αστέρια κατά δεξιά (200pixels).</p>
+					
+					<p>- <span style="color: blue;"><b>uses laser beam</b></span> (<img src="../assets/useLaserBeam.png" alt="Star" height="29" width="85">). Με αυτό το μπλοκ μπορείς να προετοιμάσεις τον/την <span class="spanPlayerName" style="color: white;"></span> να ρίξει μια ακτίνα φωτός.</p>
+					
+					<p>- <span style="color: blue;"><b>shoot laser beam</b></span> (<img src="../assets/shootBeamDir.png" alt="Star" height="29" width="85">). Με αυτό το μπλοκ μπορείς να πεις τον/την<span class="spanPlayerName" style="color: white;"></span> σε ποιά κατεύθυνση να ρίξει την ακτίνα φωτός. </p>
+					<p><span style="color: gray;"><b>Προσοχή: </b></span>Από τώρα και στο εξής, κάθε φορά που θα πατήσεις το <span style="color: gray;">Reset Game</span> κουμπί, ο/η <span class="spanPlayerName" style="color: white;"></span> θα χάσει 10 πόντους από το σκορ.</p>
+					<p><span style="color: green;font-size:20px;">Πάντα να θυμάσαι:</span> Ο/Η <span class="spanPlayerName" style="color: white;"></span> κινείται 100 pixels την φορά. Η απόσταση μεταξύ 2 αστεριών είναι 100 pixels.</p>
+					<p>Ήρθε η σειρά σου να κερδίσεις το Επίπεδο!</p>
+					
+					<br>
+					
+
+</div>
+
+<div id="level4">
+					<h2>Level 4 - Repeat While</h2>
+					
+					<p><span style="color: red;"><b>Νέα Εμπόδια: </b></span></p>
+					<p>- <span style="color: red;"><b>Τοίχος</b></span> (<img src="../assets/wall.jpg" alt="Star" height="20" width="20">). Ένας τοίχος είναι ένα εμπόδιο που κλείνει το μονοπάτι σου. Μπορείς να σπάσεις τον τοίχο εάν το επιτεθείς αρκετές φορές. Το νέο "repeat while wall is (broken or not broken)" μπλοκ θα σε βοηθήσει να σπάσεις τον τοίχο.</p>
+					
+					<p><span style="color: blue;"><b>Νέο μπλοκ: </b></span></p>
+					<p>- <span style="color: blue;"><b>Repeat while wall is (broken or not broken)</b></span> (<img src="../assets/repeatWhile.png" alt="Star" height="50" width="120">). Αυτό το μπλοκ θα σε βοηθήσει να σπάσεις τον τοίχο. Έχεις δύο επιλογές (broken or not broken). Αυτές οι επιλογές ονομάζονται συνθήκες. Το <span style="color: blue;"><b>Repeat while wall is (broken or not broken)</b></span> μπλοκ θα επαναλαμβάνει τα μπλοκ εντολών που θα τοποθετήσεις μέσα του όσο η συνθήκη σου είναι αληθής. Για παράδειγμα όταν ξεκινάς αυτό το επίπεδο ο τοίχος είναι "not broken". Εάν επιτεθείς τον τοίχο επανειλημμένα  τότε κάποια στιγμή θα σπάσει. Έτσι μπορείς να χρησιμοποιήσεις το <span style="color: blue;"><b>"repeat while wall is not broken"</b></span> μπλοκ και μέσα του να βάλεις το "use laser beam" μπλοκ για να επιτεθείς τον τοίχο πολλές φορές. Όταν ο τοίχος σπάσει (broken), το <span style="color: blue;"><b>"repeat while wall is not broken"</b></span> μπλοκ θα σταματήσει να επαναλαμβάνει τα μπλοκ που έβαλες μέσα του.</p>
+					
+					
+					<p><span style="color: gray;"><b>Προσοχή 1: </b></span>Κάθε φορά που πατάς το <span style="color: gray;">Reset Game</span> κουμπί, ο/η <span class="spanPlayerName" style="color: white;"></span> θα χάσει 10 πόντους από το σκορ.</p>
+					<p><span style="color: gray;"><b>Προσοχή 2: </b></span>Εάν δεν τοποθετήσεις κανένα μπλοκ μέσα στο <span style="color: blue;"><b>Repeat while wall is (broken or not broken)</b></span> μπλοκ και η συνθήκη του είναι αληθής, τότε ο/η <span class="spanPlayerName" style="color: white;"></span> θα συνεχίσει να πηγαίνει δεξιά και αριστερά χωρίς να ξέρει τι να κάνει.</p>
+					<p><span style="color: green;font-size:20px;">Πάντα να θυμάσαι:</span> Ο/Η <span class="spanPlayerName" style="color: white;"></span> κινείται 100 pixels την φορά. Η απόσταση μεταξύ 2 αστεριών είναι 100 pixels.</p>
+					
+					<br>
+					
+
+</div>
+
+<div id="level5">
+					<h2>Level 5 - Repeat Until</h2>
+					
+					<p><span style="color: blue;"><b>Νέο Μπλοκ: </b></span></p>
+					<p>- <span style="color: blue;"><b>Repeat until wall is (broken or not broken)</b></span> (<img src="../assets/repeatUnti.png" alt="Star" height="50" width="120">). Αυτό το μπλοκ θα σε βοηθήσει να σπάσεις τον τοίχο. Έχεις δύο επιλογές (broken or not broken). Θυμήσου ότι αυτές οι επιλογές ονομάζονται συνθήκες. Το <span style="color: blue;"><b>"Repeat until wall is (broken or not broken)"</b></span> μπλοκ θα συνεχίσει να επαναλαμβάνει τα μπλοκ που θα τοποθετήσεις μέσα του όσο η συνθήκη είναι <b>ψευδής</b>. Για παράδειγμα όταν ξεκινάς αυτό το επίπεδο, ο τοίχος μέσα στο παιχνίδι είναι "not broken". Εάν επιτεθείς επανειλημμένα τότε ο τοίχος κάποια στιγμή θα σπάσει. Έτσι μπορείς να χρησιμοποιήσεις το <span style="color: blue;"><b>"repeat until wall is broken"</b></span> μπλοκ και μέσα του να τοποθετήσεις το laser beam μπλοκ για να επιτεθείς τον τοίχο πολλές φορές. Όταν ο τοίχος σπάσει το <span style="color: blue;"><b>"repeat until wall is broken"</b></span> μπλοκ θα σταματήσει να επαναλαμβάνει τα μπλοκ που τοποθέτησες μέσα του.</p>
+					
+					
+					<p><span style="color: gray;"><b>Προσοχή 1: </b></span>Κάθε φορά που πατάς το <span style="color: gray;">Reset Game</span> κουμπί, ο/η <span class="spanPlayerName" style="color: white;"></span> θα χάσει 10 πόντους από το σκορ.</p>
+					<p><span style="color: gray;"><b>Προσοχή 2: </b></span>Εάν δεν τοποθετήσεις κανένα μπλοκ μέσα στο <span style="color: blue;"><b>Repeat while wall is (broken or not broken)</b></span> μπλοκ και η συνθήκη του είναι αληθής, τότε ο/η <span class="spanPlayerName" style="color: white;"></span> θα συνεχίσει να πηγαίνει δεξιά και αριστερά χωρίς να ξέρει τι να κάνει.</p>
+					<p><span style="color: green;font-size:20px;">Πάντα να θυμάσαι:</span> Ο/Η <span class="spanPlayerName" style="color: white;"></span> κινείται 100 pixels την φορά. Η απόσταση μεταξύ 2 αστεριών είναι 100 pixels.</p>
+					
+					<br>
+					
+
+</div>
+
+<div id="level6">
+					<h2>Level 6 - Simple If</h2>
+					
+					<p><span style="color: blue;"><b>Νέο Μπλοκ: </b></span></p>
+					<p>- <span style="color: blue;"><b>if (condition)</b></span> (<img src="../assets/if.png" alt="Star" height="30" width="60">). Από τα προηγούμενα επίπεδα έμαθες ότι μια συνθήκη μπορεί να είναι είτε αληθής είτε ψευδής. Εάν η συνθήκη είναι αληθής τότε τα μπλοκ που θα τοποθετήσεις μέσα στο "if" μπλοκ θα εκτελεστούν μία φορά χωρίς επανάληψη. Εάν τοποθετήσεις το "if" μπλοκ μέσα στο "repeat" μπλοκ τότε το "if" μπλοκ θα εκτελεστεί όσες φορές εκτελεστεί και το repeat μπλοκ. </p>
+					<p>- <span style="color: blue;"><b>star has:"option" color</b></span> (<img src="../assets/starHasColor.png" alt="Star" height="30" width="120">). Αυτή είναι <b>η συνθήκη</b> του "if" μπλοκ. Με αυτό το μπλοκ μπορείς να ελέγχεις εάν ο/η <span class="spanPlayerName" style="color: white;"></span> βρίσκεται πίσω από ένα κόκκινο (ή πράσινο ή μπλε) αστέρι. Εάν ο/η <span class="spanPlayerName" style="color: white;"></span> βρίσκεται πίσω από το χρώμα του αστεριού που επέλεξες τότε η συνθήκη του "if" μπλοκ γίνεται αληθής και τα μπλοκ που έβαλες μέσα στο "if" μπλοκ εκτελούνται.</p>
+					<p>- <span style="color: blue;"><b>collect "option" star</b></span> (<img src="../assets/collectColorStar.png" alt="Star" height="30" width="120">). Με αυτό το μπλοκ μπορείς να ζητήσεις από τον/την <span class="spanPlayerName" style="color: white;"></span> να συλλέξει το πολύχρωμο αστέρι της επιλογής σου. Ο/Η <span class="spanPlayerName" style="color: white;"></span> θα πρέπει να βρίσκεται πίσω από το πολύχρωμο αστέρι για να μπορέσει να το μαζέψει. Η συλλογή των πολύχρωμων αστεριών είναι δύσκολη και για τον λόγο αυτό  θα πρέπει να ζητάς από τον/την εξερευνητή/τρια να μαζέψει ένα πολύχρωμο αστέρι την σωστή χρονική στιγμή. Διαφορετικά θα σπαταλήσεις πολύτιμο χρόνο.</p>
+					<br>
+					
+					
+					<p><span style="color: gray;"><b>Προσοχή: </b></span>Κάθε φορά που πατάς το <span style="color: gray;">Reset Game</span> κουμπί, ο/η <span class="spanPlayerName" style="color: white;"></span> θα χάσει 10 πόντους από το σκορ.</p>
+					
+					<p><span style="color: green;font-size:20px;">Πάντα να θυμάσαι:</span> Ο/Η <span class="spanPlayerName" style="color: white;"></span> κινείται 100 pixels την φορά. Η απόσταση μεταξύ 2 αστεριών είναι 100 pixels.</p>
+					
+					<br>
+					
+
+</div>
+
+
+<div id="level7">
+					<h2>Level 7 - If - else</h2>
+					
+					<p><span style="color: blue;"><b>Σημαντικό μπλοκ: </b></span></p>
+					<p>- <span style="color: blue;"><b>if (condition) else if(condition) else</b></span> (<img src="../assets/ifElseIf.png" alt="Star" height="100" width="150">). Στο Επίπεδο 6 έμαθες την λειτουργικότητα του απλού "if" μπλοκ. Τώρα είναι η στιγμή να δημιουργήσεις έναν <b>"else if"</b> έλεγχο. Εάν προσέξεις το "if" μπλοκ θα δεις ένα μικρό γρανάζι (<img src="../assets/settingsIf.png" alt="Star" height="20" width="20">) πάνω του. Με αυτό το κουμπί μπορείς να επεκτείνεις  το απλό if μπλοκ και να τοποθετήσεις περισσότερες συνθήκες. Στο παιχνίδι υπάρχουν τρεις διαφορετικοί τύποι πολύχρωμων αστεριών(κόκκινα, πράσινα, μπλε). Κάθε φορά που ο/η εξερευνητής/τρια βρίσκεται πίσω από ένα πολύχρωμο αστέρι θα πρέπει να ελέγχεις το χρώμα του αστεριού μέσα από την συνθήκη του "if" ή "else if" και εάν η συνθήκη είναι αληθής θα πρέπει να πεις στον/στην <span class="spanPlayerName" style="color: white;"></span> να μαζέψει το πολύχρωμο αστέρι. Ο/Η <span class="spanPlayerName" style="color: white;"></span> θα ξεκινήσει ελέγχοντας  την πρώτη συνθήκη από το "if-else" μπλοκ. Εάν η πρώτη συνθήκη είναι αληθής τότε ο/η <span class="spanPlayerName" style="color: white;"></span> θα εκτελέσει τα μπλοκ εντολών που τοποθετήσεις μέσα του και θα αγνοήσει όλες τι υπόλοιπες "else if" συνθήκες.Εάν η πρώτη συνθήκη είναι ψευδής, τότε ο/η <span class="spanPlayerName" style="color: white;"></span> θα ελέγξει την δεύτερη "else if" συνθήκη και ούτω καθεξής.</p>
+					
+					<br>
+					
+					
+					<p><span style="color: gray;"><b>Προσοχή: </b></span>Κάθε φορά που πατάς το <span style="color: gray;">Reset Game</span> κουμπί, ο/η <span class="spanPlayerName" style="color: white;"></span> θα χάσει 10 πόντους από το σκορ.</p>
+					
+					<p><span style="color: green;font-size:20px;">Πάντα να θυμάσαι:</span> Ο/Η <span class="spanPlayerName" style="color: white;"></span> κινείται 100 pixels την φορά. Η απόσταση μεταξύ 2 αστεριών είναι 100 pixels.</p>
+					
+					<br>
+					
+
+</div>
+
+<div id="level8">
+					<h2>Level 8 - Nested if</h2>
+					
+					<p><span style="color: blue;"><b>Σημαντικό Μπλοκ: </b></span></p>
+					<p>- <span style="color: blue;"><b>if (condition) inside an if (condition)</b></span> (<img src="../assets/ifInsideIf.png" alt="Star" height="100" width="200">). Όταν τοποθετείς ένα "if" μπλοκ μέσα σε ένα άλλο "if" μπλοκ όπως φαίνεται στην προηγούμενη εικόνα, τότε το δεύτερο "if" μπλοκ ονομάζεται <b>εμφωλευμένο if</b>. Όταν βλέπεις 2 "if" μπλοκ το ένα μέσα στο άλλο τότε μπορείς να ελέγξεις δύο συνθήκες και εάν οι δύο συνθήκες είναι αληθής μπορείς να εκτελέσεις τα μπλοκ εντολών που θα τοποθετήσεις στην περιοχή "do" του μπλοκ. Στο παράδειγμα της παραπάνω εικόνας η πρώτη συνθήκη ελέγχει εάν ο/η <span class="spanPlayerName" style="color: white;"></span> βρίσκεται πίσω από ένα κόκκινο αστέρι. Εάν ο/η <span class="spanPlayerName" style="color: white;"></span> βρίσκεται πίσω από ένα κόκκινο αστέρι τότε η συνθήκη είναι αληθής και μετά ελέγχεται η "εμφωλευμένη if" συνθήκη, η οποία κοιτάει εάν το πολύχρωμο αστέρι πίσω από το οποίο βρίσκεται ο/η εξερευνητής/τρια έχει ένα αιωρούμενο μπαλόνι ακριβώς από πάνω του. Τα μπαλόνια έχουν το ίδιο χρώμα με εκείνο του αστεριού πάνω από το οποίο αιωρούνται.</p>
+					<br>
+					
+					<p><span style="color: blue;"><b>Νέα Μπλοκ: </b></span></p>
+					<p>- <span style="color: blue;"><b>star has balloon on top</b></span> (<img src="../assets/starHasBalloon.png" alt="Star" height="25" width="150">). Με αυτό το μπλοκ μπορείς να ελέγχεις εάν το αστέρι πίσω από το οποίο βρίσκεται ο/η <span class="spanPlayerName" style="color: white;"></span> έχει ένα μπαλόνι ακριβώς από πάνω του. <span style="color: red;font-size: 18px;">Σημαντικό: Θα πρέπει πάντα να μαζεύεις πρώτα το μπαλόνι και μετά το αστέρι. Διαφορετικά εάν μαζέψεις πρώτα το αστέρι και μετά ελέγξεις εάν το αστέρι έχει ένα μπαλόνι από πάνω του, τότε ο/η <span class="spanPlayerName" style="color: white;"></span> θα μπερδευτεί και θα ξεχάσει ότι σε εκείνη την θέση υπήρχε ένα αστέρι.</span></p>
+					
+					<p>- <span style="color: blue;"><b>jump and collect option balloon</b></span> (<img src="../assets/collectBalloon.png" alt="Star" height="25" width="150">). Με αυτό το μπλοκ ο/η <span class="spanPlayerName" style="color: white;"></span></span> μπορεί να πηδήξει και να μαζέψει ένα πολύχρωμο μπαλόνι της επιλογής σου</p>
+					<br>
+					
+					
+					<p><span style="color: gray;"><b>Προσοχή: </b></span>Κάθε φορά που πατάς το <span style="color: gray;">Reset Game</span> κουμπί, ο/η <span class="spanPlayerName" style="color: white;"></span> θα χάσει 10 πόντους από το σκορ.</p>
+					
+					<p><span style="color: green;font-size:20px;">Πάντα να θυμάσαι:</span> Ο/Η <span class="spanPlayerName" style="color: white;"></span> κινείται 100 pixels την φορά. Η απόσταση μεταξύ 2 αστεριών είναι 100 pixels.</p>
+					
+					<br>
+					
+
+</div>
+
+<div id="level9">
+					<h2>Level 9 - Method</h2>
+					
+					<p><span style="color: blue;"><b>Μέθοδοι: </b></span></p>
+					<p>Αυτό το επίπεδο θα σε βοηθήσει να καταλάβεις την λειτουργικότητα των μεθόδων. Στο παιχνίδι κάθε φορά που βρίσκεσαι πίσω από ένα αστέρι πρέπει να ελέγχεις το χρώμα του, μετά να ελέγχεις εάν υπάρχει μπαλόνι απο πάνω του, εάν υπάρχει να το μαζέψεις και τέλος να μαζέψεις και το αστέρι. Πρέπει να επαναλαμβάνεις αυτά τα βήματα για κάθε αστέρι που βλέπεις. Σε αυτό θα σε βοηθήσουν οι μέθοδοι. Όταν χρειάζεται να κάνεις τις ίδιες ενέργειες  ξανά και ξανά, που στην περίπτωση μας είναι ο έλεγχος για αστέρια και μπαλόνια, μπορείς να δημιουργήσεις μια μέθοδο και μέσα τις να βάλεις όλες αυτές τις ενέργειες . Για παράδειγμα μπορείς να δημιουργήσεις μια μέθοδο με το όνομα "check for balloons and stars" και μέσα τις να τοποθετήσεις όλους τους ελέγχους που αναφέρθηκαν νωρίτερα. Όταν η μέθοδος σου είναι έτοιμη χρησιμοποίησε το "call method" μπλοκ κάτω από το start μπλοκ και στη σωστή θέση.</p>
+					<br>
+					
+					<p><span style="color: blue;"><b>Νέο Μπλοκ: </b></span></p>
+					<p>- <span style="color: blue;"><b>Method name: "you name it"</b></span> (<img src="../assets/method.png" alt="Star" height="40" width="200">). Σύρε και άφησε ένα method μπλοκ μέσα στην Περιοχή Blockly. Μην συνδέσεις αυτό το μπλοκ με το Start μπλοκ. Δώσε ένα όνομα στην μέθοδο και μέσα της τοποθέτησε τα μπλοκ που επιθυμείς. Αυτό το μπλοκ δεν θα εκτελεστεί από τον/την <span class="spanPlayerName" style="color: white;"></span> μέχρι να χρησιμοποιήσεις το "call method" μπλοκ και να το συνδέσεις κάτω από το Start μπλοκ</p>
+					
+					<p>- <span style="color: blue;"><b>call method</b></span> (<img src="../assets/callMethod.png" alt="Star" height="25" width="100">). Με αυτό το μπλοκ μπορείς να καλέσεις την μέθοδο με το συγκεκριμένο όνομα και να πεις στον/στην <span class="spanPlayerName" style="color: white;"></span></span> να εκτελέσει όλα τα μπλοκ που τοποθέτησες μέσα στην μέθοδο. Για να δημιουργήσεις ένα call method μπλοκ, θα πρέπει να επιλέξεις την μέθοδο που δημιούργησες, να πατήσεις δεξί κλικ επάνω της και μετά να πατήσεις την 'create "your method's name"' επιλογή.</p>
+					<img src="../assets/howToCreateCallMethod.png" alt="Star" height="150" width="250">
+					<br>
+					<p>Στο παράδειγμα παρακάτω μπορείς να δεις μια μέθοδο που δημιουργήθηκε με το όνομα "how to move", η οποία μετακινεί τον/την εξερευνητή/τρια μια φορά προς τα δεξιά. Μετά κάτω από το Start μπλοκ καλείται η μέθοδος με την βοήθεια του call method μπλοκ "how to move".</p>
+					(<img src="../assets/methodExample.png" alt="Star" height="50" width="300">)
+					
+					
+					<p><span style="color: gray;"><b>Προσοχή: </b></span>Κάθε φορά που πατάς το <span style="color: gray;">Reset Game</span> κουμπί, ο/η <span class="spanPlayerName" style="color: white;"></span> θα χάσει 10 πόντους από το σκορ.</p>
+					
+					<p><span style="color: green;font-size:20px;">Πάντα να θυμάσαι:</span> Ο/Η <span class="spanPlayerName" style="color: white;"></span> κινείται 100 pixels την φορά. Η απόσταση μεταξύ 2 αστεριών είναι 100 pixels.</p>
+					
+					<br>
+					
+
+</div>
+
+<div id="level10">
+					<h2>Level 10 - Limited Blocks</h2>
+					
+					<p style="text-align:center;"><span style="color: #ff00ff; font-size:32px;"><b>Εκπαιδευτικός Στόχος</b></span>: Χρησιμοποίησε όλα τα διαθέσιμα μπλοκ για να κερδίσεις το επίπεδο.</p>
+					
+					<br>
+					
+
+</div>
+
+
+	
+  </div>
+  
+</div>
+<!-- Modal END-->
+				
+		<script src="blocklyScript.js"></script>
+		<script src="phaserScript.js"></script> 
+		
+		<script>
+					
+			var modal = document.getElementById("myModal");		
+			var span = document.getElementsByClassName("close")[0];
+
+
+
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+			  modal.style.display = "none";
+			}
+			
+			function showHelp() {
+			 modal.style.display = "block";
+			}
+		</script>
+			
+	</body>
+</html>
