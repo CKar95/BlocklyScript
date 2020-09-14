@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Start Page</title>
+	<link rel="stylesheet" type="text/css" href="styleHelp.css">
+	<link href='https://fonts.googleapis.com/css?family=Covered By Your Grace' rel='stylesheet'>
+	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w"
+    crossorigin="anonymous">
+	<style>
+
+
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a href="index.php">Home</a></li>
+  <li id="title"><h3>Certification</h3></li>
+</ul>
+<br>
+<br>
+<br>
+<br>
+
+
+
+<div id="certification">
+<h1>Congratulations</h1>
+
+
+<span id="playerName" style="display: block;text-align: center;font-size:80px;margin-bottom:40px;"></span>
+
+<span style="display: block;text-align:center;font-size:40px;color:black;">You helped <span id="explorer" style="text-align:center;font-size:40px;color:purple;"></span> to complete all the levels of BlocklyScript and restore the fallen stars back to the sky. Blocklyland is saved by you.</span>
+
+<br>
+<span style="display: block;text-align:center;font-size:80px;color:black;"> Score: <span id="score" style="text-align:center;font-size:80px;color:green;"></span>  Time: <span id="time" style="text-align:center;font-size:80px;color:blue;"></span></span>
+
+
+
+
+</div>
+
+
+<br> 
+
+<button id="printCert" onclick="myFunction()" class="button-success pure-button">Print Certification</button>
+
+
+	
+<script>
+document.getElementById('playerName').innerHTML = localStorage.getItem('userName');
+document.getElementById('explorer').innerHTML = localStorage.getItem('explorerName');
+document.getElementById('score').innerHTML = localStorage.getItem('level11score');
+
+
+var totalTime = ( Number(localStorage.getItem('level1time')) + Number(localStorage.getItem('level2time')) + Number(localStorage.getItem('level3time')) + Number(localStorage.getItem('level4time')) + Number(localStorage.getItem('level5time')) + Number(localStorage.getItem('level6time')) + Number(localStorage.getItem('level7time')) + Number(localStorage.getItem('level8time')) + Number(localStorage.getItem('level9time')) + Number(localStorage.getItem('level10time')) + Number(localStorage.getItem('level11time')));
+
+document.getElementById('time').innerHTML = (parseInt(totalTime / 60)) +':'+ (totalTime % 60);
+</script>
+
+	
+
+
+<script>
+function myFunction() {
+  window.print();
+}
+</script>
+
+
+	
+
+
+
+</body>
+</html>

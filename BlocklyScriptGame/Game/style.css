@@ -1,0 +1,281 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html, body {
+    height: 100%;
+	min-width: 1000px;
+	font-family: 'Comic Sans MS';
+	
+}
+
+html{
+	scroll-behavior: smooth;
+}
+
+b > a {
+     text-decoration: none;
+	 color: purple;
+}
+
+ b > a:visited {
+  color: purple;
+}
+
+span{
+	font-family: 'Covered By Your Grace';
+	color: orange;
+	font-size: 120px;
+	
+}
+
+#scenarioSp{
+	color: #ff6699;
+}
+
+#gameLevelsSp{
+	color: #9933ff;
+}
+
+#highScoresSp{
+	color: #0033cc;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: +1;
+}
+
+li {
+  float: left;
+   border-right: 1px solid #bbb;
+}
+
+#title{
+	float:right ;
+	display: inline-block;
+	  color: white;
+	  text-align: center;
+	  padding: 15px;
+	  text-decoration: none;
+	  text-align:center;
+	  font-size: 22px;
+	  background: rgb(255, 184, 65);
+}
+
+li a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  text-decoration: none;
+  text-align:center;
+  font-size: 22px;
+}
+
+li a:hover {
+  background-color: #4CAF50;
+}
+
+#startLevel1:hover {
+	background-color: #4CAF50;
+	color: white;
+}
+
+
+
+
+
+#playTheGame {
+	
+	background-image: url("assets/hydro_background_800x600.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	width: 100%;
+	height:100%;
+	min-height:900px;
+	background-color: #f1f1f1;
+	text-align: center;
+	border-bottom: 2px solid green;
+	
+	
+	
+}
+
+#scenario {
+	background-image: url("assets/racing_road_game_background_game_assets_dribbble.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	width: 100%;
+	height:100%;
+	min-height:900px;
+	text-align: center;
+	border-bottom: 2px solid gray;
+	
+}
+
+#gameLevels {
+	background-image: url("assets/game-assets-game-background-sidescroller.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	width: 100%;
+	height:100%;
+	min-height:900px;
+	text-align: center;
+	border-bottom: 2px solid green;
+	
+}
+
+#highScores {
+	background-image: url("assets/BG1.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	width: 100%;
+	height:100%;
+	min-height:900px;
+	text-align: center;
+
+	
+}
+
+p {
+	
+	color: #9933ff;
+	max-width: 500px;
+	margin: auto;
+	font-size: 22px;
+	margin-top: 5%;
+	background-color: #BADA55;
+	border-radius: 5px 20px 5px;
+	border:solid 2px hsla(0, 95%, 35%, 1);
+	padding: 30px;
+	
+	
+}
+
+#scenarioParag {
+	margin-top: 2%;
+}
+
+table{
+	width: 800px;
+	margin: auto;
+	font-size: 22px;
+	margin-top: 5%;
+	background-color: #BADA55;
+	border-radius: 20px !important;
+	padding: 30px;
+	
+}
+
+th{
+	text-align: center;
+	border-right: 1px solid #9933ff;	
+	padding-top: 15px !important;
+}
+td{
+
+	border-right: 1px solid #9933ff;
+	text-align: center;
+	color: white;
+	padding-top: 15px !important;
+	padding-bottom: 15px !important;
+	
+	
+}
+
+tr {
+	border-bottom: 1px solid #9933ff;
+}
+
+th:last-child {
+	border-right: none;
+}
+
+td:last-child {
+	border-right: none;
+}
+
+tr:last-child {
+	border-bottom: none !important;
+}
+
+
+
+
+#startLevel1 {
+	font-size: 25px;
+    background: rgb(255, 184, 65);
+	border: 1px solid black;
+	border-radius: 25px;
+  }
+  
+  
+  
+/* The Modal (background) */
+.modal {
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 2; /* Sit on top */
+  padding-top: 20%; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+   background-color: #BADA55;
+  margin: auto;
+  padding-bottom: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 70px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+td > a {
+	cursor: not-allowed;
+	opacity: 0.5;
+	text-decoration: none;
+	pointer-events: none;
+}
+
+td > a:hover {
+	background-color: white;
+	border-radius: 5px;
+}
+

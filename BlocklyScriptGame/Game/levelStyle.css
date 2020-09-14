@@ -1,0 +1,279 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html, body {
+    height: 100%;
+	min-width: 1000px;
+	font-family: 'Comic Sans MS';
+	
+}
+
+#home {
+	display: inline-block;
+	float: left;
+	text-decoration: none;
+	 color: white;
+	 font-size: 22px;
+	 padding: 15px;
+	 border-right: 1px solid #bbb;
+}
+
+ #home:hover {
+  background-color: #4CAF50;
+}
+
+#languageSel {
+	display: inline-block;
+	float: left;
+	text-decoration: none;
+	 color: white;
+	 font-size: 22px;
+	 padding: 15px;
+	 border-right: 1px solid #bbb;
+}
+
+ #languageSel:hover {
+  background-color: #4CAF50;
+}
+
+a{
+	text-decoration: none;
+}
+
+h3 {
+	float: right;
+	display: inline-block;
+	color: white;
+	  text-align: center;
+	  padding: 15px;
+	  text-decoration: none;
+	  text-align:center;
+	  font-size: 22px;
+	  background: rgb(255, 184, 65);
+}
+
+body {
+	 background-image: url("assets/background.png");
+	 background-repeat: no-repeat;
+	background-size: 100% 100%;
+}
+
+#output {
+	display: inline-block; 
+	height: 280px; 
+	width: 98%;
+	resize : none;
+	border-radius: 25px;
+	background-color:  #ddd;
+	opacity:0.8;
+}
+
+#levelTips {
+	overflow: auto;
+	display: inline-block; 
+	height: 330px; 
+	width: 95%;
+	margin-left: 2%;
+	background-color: #BADA55;
+	resize : none;
+	border-radius: 25px 0px 25px 0px;
+	border: 8px solid;
+	 border-color: #4493A0 #DF127B red #F7C200;
+}
+
+h2 {
+	text-align: center;
+}
+
+
+#runButton {
+          background: rgb(255, 184, 65); /* this is a orange */
+}
+
+#resetButton {
+          background: rgb(255, 184, 65); /* this is a orange */
+}
+  
+#nextLevel {
+          background: rgb(255, 0, 0); /* this is a red */
+}
+
+
+
+.header{
+    background: #333;
+    
+    text-align:center;
+    font-size: 18px;
+    
+    color: #fff;
+}
+
+
+
+#wrapper {
+    height: 100%;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+	overflow: auto;
+    
+}
+
+#wrapper > .header {
+    -webkit-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+#wrapper > .header + div {
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+	
+}
+
+#wrapper > .header + div > div:first-of-type {
+    -webkit-flex: 1 0 0;
+    flex: 1 0 0;
+	height: 475px;
+	
+}
+
+#wrapper > .header + div > div:last-of-type {
+    -webkit-flex: 1 0 0;
+    flex: 1 0 0;
+	height: 475px;
+	
+	
+}
+
+
+#wrapper > .header + div + div{
+    -webkit-flex: 1 1 auto;
+    flex: 1 1 auto;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+}
+
+#wrapper > .header + div + div > div:first-of-type {
+    -webkit-flex: 1 0 0;
+    flex: 1 0 0;
+	
+}
+
+#wrapper > .header + div + div > div:last-of-type {
+    -webkit-flex: 1 0 0;
+    flex: 1 0 0;
+}
+
+
+
+#phaserDivCanvas{
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	
+}
+
+@media only screen and (max-width: 1000px) {
+  #phaserDivCanvas {
+    max-width: 400px;
+  }
+  
+}
+
+@media only screen and (min-width: 1000px) and (max-width: 1200px) {
+  #phaserDivCanvas {
+    max-width: 500px;
+  }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1400px) {
+  #phaserDivCanvas {
+    max-width: 600px;
+  }
+}
+
+#help {
+	background-color:#00cc66;
+}
+
+#badgeArea { 
+	border-radius: 5px;
+	background-color:  #9966ff;
+	border: 1px solid red;
+	pointer-events: none;
+
+	
+	
+	
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 100; /* Sit on top */
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+   background-color: #BADA55;
+  margin: auto;
+  padding-bottom: 20px;
+  border: 1px solid #888;
+  width: 70%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 70px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.modal-content > div:nth-child(odd) {
+  background-color: #BADA55;
+}
+
+.modal-content > div:nth-child(even) {
+  background-color: #5cd65c;
+}
+
+.modal-content > div {
+	border-bottom: 5px solid red;
+	
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html, body {
+    height: 100%;
+	min-width: 1000px;
+	font-family: 'Comic Sans MS';
+	background-color: #BADA55;
+	
+}
+
+html{
+	scroll-behavior: smooth;
+}
+
+b > a {
+     text-decoration: none;
+	 color: purple;
+}
+
+ b > a:visited {
+  color: purple;
+}
+
+span{
+	font-family: 'Covered By Your Grace';
+	color: orange;
+	font-size: 30px;
+	
+}
+
+#scenarioSp{
+	color: #ff6699;
+}
+
+#gameLevelsSp{
+	color: #9933ff;
+	font-size: 80px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: +1;
+}
+
+li {
+  float: left;
+   border-right: 1px solid #bbb;
+}
+
+#title{
+	float:right ;
+	display: inline-block;
+	  color: white;
+	  text-align: center;
+	  padding: 15px;
+	  text-decoration: none;
+	  text-align:center;
+	  font-size: 22px;
+	  background: rgb(255, 184, 65);
+}
+
+li a {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  text-decoration: none;
+  text-align:center;
+  font-size: 22px;
+}
+
+li a:hover {
+  background-color: #4CAF50;
+}
+
+div {
+	border-bottom: 5px solid red;
+	
+}
+
+h2 {
+	text-align: center;
+}
+
+div:nth-child(odd) {
+  background-color: #BADA55;
+}
+
+div:nth-child(even) {
+  background-color: #5cd65c;
+}
+
+#gameLevels {
+	background-image: url("assets/game-assets-game-background-sidescroller.png");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	width: 100%;
+	height:1500px;
+	min-height:900px;
+	text-align: center;
+
+	
+}
+
+table{
+	
+	margin: auto;
+	font-size: 22px;
+	margin-top: 5%;
+	background-color: #BADA55;
+	border-radius: 20px !important;
+	padding: 30px;
+	
+}
+
+th{
+	text-align: center;
+	border-right: 1px solid #9933ff;	
+	padding-top: 15px !important;
+	border-bottom: 1px solid #9933ff;
+	padding-left: 5px !important;
+	padding-right: 5px !important;
+	
+}
+td{
+
+	border-right: 1px solid #9933ff;
+	text-align: center;
+	color: white;
+	padding-top: 15px !important;
+	padding-bottom: 15px !important;
+	
+	
+}
+
+td {
+	border-bottom: 1px solid #9933ff;
+}
+
+th:last-child {
+	border-right: none;
+}
+
+td:last-child {
+	border-right: none;
+}
+
+tr:last-child {
+	border-bottom: none !important;
+}
+
+#certification {
+	border: 10px solid red;
+	height: 75%;
+	border-radius: 25px 0px 25px 0px;
+	border: 25px solid;
+	border-color: #4493A0 #DF127B red #F7C200;
+	background-color: white;
+	background-image: url("assets/certification.png");
+	background-repeat:no-repeat;
+}
+
+h1{
+	display:inline-block;
+	text-align: center;
+	width: 100%;
+	margin-bottom: 40px !important;
+	font-size: 70px !important;
+}
+
+button {
+	background-color: orange !important;
+}
+
+#cert {
+	background-color: green !important;
+}
+
+#printCert {
+
+	margin-left: 45%;
+}
+
+

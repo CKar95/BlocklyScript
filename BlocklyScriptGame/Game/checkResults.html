@@ -1,0 +1,307 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Start Page</title>
+	<link rel="stylesheet" type="text/css" href="styleHelp.css">
+	<link href='https://fonts.googleapis.com/css?family=Covered By Your Grace' rel='stylesheet'>
+	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w"
+    crossorigin="anonymous">
+	<style>
+
+
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a href="index.php">Home</a></li>
+  <li id="title"><h3>Results</h3></li>
+</ul>
+
+
+
+<div id="gameLevels">
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<span id="gameLevelsSp">Game Results </span>
+	<table>
+	
+	
+  <tr>
+    <th>Level</th>
+    <th>Name</th>
+	<th>Score</th>
+    <th>Time(min.)</th>
+	<th>First Time Won</th>
+    <th >Times Reseted</th>
+	<th>Stars</th>
+	<th>Solution Reward</th>
+  </tr>
+  
+  <tr>
+    <td>1</td>
+	<td>Movement</td>
+	<td id="tdscore1"></td>
+	<td id="tdltime1"></td>
+	<td id="tdfirsttimewon1"></td>
+	<td id="tdtimesreseted1"></td>
+	<td id="tdstars1"></td>
+	<td id="tdreward1"></td>
+    
+  </tr>
+  <tr>
+    <td>2</td>
+	<td>Jump</td>
+	<td id="tdscore2"></td>
+	<td id="tdltime2"></td>
+	<td id="tdfirsttimewon2"></td>
+	<td id="tdtimesreseted2"></td>
+	<td id="tdstars2"></td>
+	<td id="tdreward2"></td>
+  </tr>
+  <tr>
+    <td>3</td>
+	<td>Repean 'n' times</td>
+	<td id="tdscore3"></td>
+	<td id="tdltime3"></td>
+	<td id="tdfirsttimewon3"></td>
+	<td id="tdtimesreseted3"></td>
+	<td id="tdstars3"></td>
+	<td id="tdreward3"></td>
+  </tr>
+  <tr>
+   <td>4</td>
+	<td>Repean While</td>
+	<td id="tdscore4"></td>
+	<td id="tdltime4"></td>
+	<td id="tdfirsttimewon4"></td>
+	<td id="tdtimesreseted4"></td>
+	<td id="tdstars4"></td>
+	<td id="tdreward4"></td>
+  </tr>
+  <tr>
+    <td>5</td>
+	<td>Repean Until</td>
+	<td id="tdscore5"></td>
+	<td id="tdltime5"></td>
+	<td id="tdfirsttimewon5"></td>
+	<td id="tdtimesreseted5"></td>
+	<td id="tdstars5"></td>
+	<td id="tdreward5"></td>
+  </tr>
+  <tr>
+    <td>6</td>
+	<td>Simple if</td>
+	<td id="tdscore6"></td>
+	<td id="tdltime6"></td>
+	<td id="tdfirsttimewon6"></td>
+	<td id="tdtimesreseted6"></td>
+	<td id="tdstars6"></td>
+	<td id="tdreward6"></td>
+  </tr>
+   <tr>
+    <td>7</td>
+	<td>If - else</td>
+	<td id="tdscore7"></td>
+	<td id="tdltime7"></td>
+	<td id="tdfirsttimewon7"></td>
+	<td id="tdtimesreseted7"></td>
+	<td id="tdstars7"></td>
+	<td id="tdreward7"></td>
+  </tr>
+   <tr>
+    <td>8</td>
+	<td>Nested if</td>
+	<td id="tdscore8"></td>
+	<td id="tdltime8"></td>
+	<td id="tdfirsttimewon8"></td>
+	<td id="tdtimesreseted8"></td>
+	<td id="tdstars8"></td>
+	<td id="tdreward8"></td>
+  </tr>
+   <tr>
+    <td>9</td>
+	<td>Method</td>
+	<td id="tdscore9"></td>
+	<td id="tdltime9"></td>
+	<td id="tdfirsttimewon9"></td>
+	<td id="tdtimesreseted9"></td>
+	<td id="tdstars9"></td>
+	<td id="tdreward9"></td>
+  </tr>
+   <tr>
+    <td>10</td>
+	<td>Limited Blocks</td>
+	<td id="tdscore10"></td>
+	<td id="tdltime10"></td>
+	<td id="tdfirsttimewon10"></td>
+	<td id="tdtimesreseted10"></td>
+	<td id="tdstars10"></td>
+	<td id="tdreward10"></td>
+  </tr>
+   <tr>
+    <td>11</td>
+	<td>Variable</td>
+	<td id="tdscore11"></td>
+	<td id="tdltime11"></td>
+	<td id="tdfirsttimewon11"></td>
+	<td id="tdtimesreseted11"></td>
+	<td id="tdstars11"></td>
+	<td id="tdreward11"></td>
+  </tr>
+  <tr>
+    <td style="color:red">Total:</td>
+	<td style="color:red">-</td>
+	<td style="color:red" id="tdscoretotal"></td>
+	<td style="color:red" id="tdltimetotal"></td>
+	<td style="color:red" id="tdfirsttimewontotal">-</td>
+	<td style="color:red" id="tdtimesresetedtotal"></td>
+	<td style="color:red" id="tdstarstotal"></td>
+	<td style="color:red" id="tdstarstotal">-</td>
+  </tr>
+
+</table>
+
+<br>
+
+<button onclick="myFunction()" class="button-success pure-button">Print this page</button>
+<button><a href="certification.html" class="button-success pure-button" id="cert">Certification</a></button>
+	
+	
+</div>
+
+<script>
+function myFunction() {
+  window.print();
+}
+</script>
+
+<script>
+
+	for (var i=1; i<12; i++) {
+	var temp = "tdreward"+i;
+	var reward = Number(localStorage.getItem('level'+i+'badge'));
+	if(reward == 1) {
+	 document.getElementById(temp).innerHTML = '<img id="levelbadge" src="assets/first.png"  style="vertical-align:middle" height="35px" alt="123">';
+	}else if (reward == 2) {
+	document.getElementById(temp).innerHTML = '<img id="levelbadge" src="assets/second.png"  style="vertical-align:middle" height="35px" alt="123">';
+	}else if (reward == 3) {
+	document.getElementById(temp).innerHTML = '<img id="levelbadge" src="assets/third.png"  style="vertical-align:middle" height="35px" alt="123">';
+	}
+	}
+	
+	document.getElementById('tdscore1').innerHTML = localStorage.getItem('level1score');
+	document.getElementById('tdltime1').innerHTML = (parseInt(localStorage.getItem('level1time') / 60)) +':'+ (localStorage.getItem('level1time') % 60);
+	document.getElementById('tdfirsttimewon1').innerHTML = (parseInt(localStorage.getItem('level1firsttimewon') / 60)) +':'+ (localStorage.getItem('level1firsttimewon') % 60);
+	document.getElementById('tdtimesreseted1').innerHTML = localStorage.getItem('level1timesreseted');
+	document.getElementById('tdstars1').innerHTML = localStorage.getItem('level1stars');
+	
+	////
+	
+	document.getElementById('tdscore2').innerHTML = localStorage.getItem('level2score');
+	document.getElementById('tdltime2').innerHTML = (parseInt(localStorage.getItem('level2time') / 60)) +':'+ (localStorage.getItem('level2time') % 60);
+	document.getElementById('tdfirsttimewon2').innerHTML = (parseInt(localStorage.getItem('level2firsttimewon') / 60)) +':'+ (localStorage.getItem('level2firsttimewon') % 60);
+	document.getElementById('tdtimesreseted2').innerHTML = localStorage.getItem('level2timesreseted');
+	document.getElementById('tdstars2').innerHTML = localStorage.getItem('level2stars');
+	
+	////
+	
+	document.getElementById('tdscore3').innerHTML = localStorage.getItem('level3score');
+	document.getElementById('tdltime3').innerHTML = (parseInt(localStorage.getItem('level3time') / 60)) +':'+ (localStorage.getItem('level3time') % 60);
+	document.getElementById('tdfirsttimewon3').innerHTML = (parseInt(localStorage.getItem('level3firsttimewon') / 60)) +':'+ (localStorage.getItem('level3firsttimewon') % 60);
+	document.getElementById('tdtimesreseted3').innerHTML = localStorage.getItem('level3timesreseted');
+	document.getElementById('tdstars3').innerHTML = localStorage.getItem('level3stars');
+	
+	////
+	
+	document.getElementById('tdscore4').innerHTML = localStorage.getItem('level4score');
+	document.getElementById('tdltime4').innerHTML = (parseInt(localStorage.getItem('level4time') / 60)) +':'+ (localStorage.getItem('level4time') % 60);
+	document.getElementById('tdfirsttimewon4').innerHTML = (parseInt(localStorage.getItem('level4firsttimewon') / 60)) +':'+ (localStorage.getItem('level4firsttimewon') % 60);
+	document.getElementById('tdtimesreseted4').innerHTML = localStorage.getItem('level4timesreseted');
+	document.getElementById('tdstars4').innerHTML = localStorage.getItem('level4stars');
+	
+	////
+	
+	document.getElementById('tdscore5').innerHTML = localStorage.getItem('level5score');
+	document.getElementById('tdltime5').innerHTML = (parseInt(localStorage.getItem('level5time') / 60)) +':'+ (localStorage.getItem('level5time') % 60);
+	document.getElementById('tdfirsttimewon5').innerHTML = (parseInt(localStorage.getItem('level5firsttimewon') / 60)) +':'+ (localStorage.getItem('level5firsttimewon') % 60);
+	document.getElementById('tdtimesreseted5').innerHTML = localStorage.getItem('level5timesreseted');
+	document.getElementById('tdstars5').innerHTML = localStorage.getItem('level5stars');
+	
+	////
+	
+	document.getElementById('tdscore6').innerHTML = localStorage.getItem('level6score');
+	document.getElementById('tdltime6').innerHTML = (parseInt(localStorage.getItem('level6time') / 60)) +':'+ (localStorage.getItem('level6time') % 60);
+	document.getElementById('tdfirsttimewon6').innerHTML = (parseInt(localStorage.getItem('level6firsttimewon') / 60)) +':'+ (localStorage.getItem('level6firsttimewon') % 60);
+	document.getElementById('tdtimesreseted6').innerHTML = localStorage.getItem('level6timesreseted');
+	document.getElementById('tdstars6').innerHTML = localStorage.getItem('level6stars');
+	
+	////
+	
+	document.getElementById('tdscore7').innerHTML = localStorage.getItem('level7score');
+	document.getElementById('tdltime7').innerHTML = (parseInt(localStorage.getItem('level7time') / 60)) +':'+ (localStorage.getItem('level7time') % 60);
+	document.getElementById('tdfirsttimewon7').innerHTML = (parseInt(localStorage.getItem('level7firsttimewon') / 60)) +':'+ (localStorage.getItem('level7firsttimewon') % 60);
+	document.getElementById('tdtimesreseted7').innerHTML = localStorage.getItem('level7timesreseted');
+	document.getElementById('tdstars7').innerHTML = localStorage.getItem('level7stars');
+	
+	////
+	
+	document.getElementById('tdscore8').innerHTML = localStorage.getItem('level8score');
+	document.getElementById('tdltime8').innerHTML = (parseInt(localStorage.getItem('level8time') / 60)) +':'+ (localStorage.getItem('level8time') % 60);
+	document.getElementById('tdfirsttimewon8').innerHTML = (parseInt(localStorage.getItem('level8firsttimewon') / 60)) +':'+ (localStorage.getItem('level8firsttimewon') % 60);
+	document.getElementById('tdtimesreseted8').innerHTML = localStorage.getItem('level8timesreseted');
+	document.getElementById('tdstars8').innerHTML = localStorage.getItem('level8stars');
+	
+	////
+	
+	document.getElementById('tdscore9').innerHTML = localStorage.getItem('level9score');
+	document.getElementById('tdltime9').innerHTML = (parseInt(localStorage.getItem('level9time') / 60)) +':'+ (localStorage.getItem('level9time') % 60);
+	document.getElementById('tdfirsttimewon9').innerHTML = (parseInt(localStorage.getItem('level9firsttimewon') / 60)) +':'+ (localStorage.getItem('level9firsttimewon') % 60);
+	document.getElementById('tdtimesreseted9').innerHTML = localStorage.getItem('level9timesreseted');
+	document.getElementById('tdstars9').innerHTML = localStorage.getItem('level9stars');
+	
+	////
+	
+	document.getElementById('tdscore10').innerHTML = localStorage.getItem('level10score');
+	document.getElementById('tdltime10').innerHTML = (parseInt(localStorage.getItem('level10time') / 60)) +':'+ (localStorage.getItem('level10time') % 60);
+	document.getElementById('tdfirsttimewon10').innerHTML = (parseInt(localStorage.getItem('level10firsttimewon') / 60)) +':'+ (localStorage.getItem('level10firsttimewon') % 60);
+	document.getElementById('tdtimesreseted10').innerHTML = localStorage.getItem('level10timesreseted');
+	document.getElementById('tdstars10').innerHTML = localStorage.getItem('level10stars');
+	
+	////
+	
+	document.getElementById('tdscore11').innerHTML = localStorage.getItem('level11score');
+	document.getElementById('tdltime11').innerHTML = (parseInt(localStorage.getItem('level11time') / 60)) +':'+ (localStorage.getItem('level11time') % 60);
+	document.getElementById('tdfirsttimewon11').innerHTML = (parseInt(localStorage.getItem('level11firsttimewon') / 60)) +':'+ (localStorage.getItem('level11firsttimewon') % 60);
+	document.getElementById('tdtimesreseted11').innerHTML = localStorage.getItem('level11timesreseted');
+	document.getElementById('tdstars11').innerHTML = localStorage.getItem('level11stars');
+	
+	
+	////
+	
+	document.getElementById('tdscoretotal').innerHTML = localStorage.getItem('level11score');
+	
+	var totalTime = ( Number(localStorage.getItem('level1time')) + Number(localStorage.getItem('level2time')) + Number(localStorage.getItem('level3time')) + Number(localStorage.getItem('level4time')) + Number(localStorage.getItem('level5time')) + Number(localStorage.getItem('level6time')) + Number(localStorage.getItem('level7time')) + Number(localStorage.getItem('level8time')) + Number(localStorage.getItem('level9time')) + Number(localStorage.getItem('level10time')) + Number(localStorage.getItem('level11time')));
+	
+	document.getElementById('tdltimetotal').innerHTML = (parseInt(totalTime / 60)) +':'+ (totalTime % 60);
+	
+	var totalResets = (Number(localStorage.getItem('level1timesreseted')) + Number(localStorage.getItem('level2timesreseted')) + Number(localStorage.getItem('level3timesreseted')) + Number(localStorage.getItem('level4timesreseted')) + Number(localStorage.getItem('level5timesreseted')) + Number(localStorage.getItem('level6timesreseted')) + Number(localStorage.getItem('level7timesreseted')) + Number(localStorage.getItem('level8timesreseted')) + Number(localStorage.getItem('level9timesreseted')) + Number(localStorage.getItem('level10timesreseted')) + Number(localStorage.getItem('level11timesreseted')));
+	document.getElementById('tdtimesresetedtotal').innerHTML = totalResets;
+	
+	var totalStars = (Number(localStorage.getItem('level1stars')) + Number(localStorage.getItem('level2stars')) + Number(localStorage.getItem('level11stars')) + Number(localStorage.getItem('level3stars')) + Number(localStorage.getItem('level4stars')) + Number(localStorage.getItem('level5stars')) + Number(localStorage.getItem('level6stars')) + Number(localStorage.getItem('level7stars')) + Number(localStorage.getItem('level8stars')) + Number(localStorage.getItem('level9stars')) + Number(localStorage.getItem('level10stars')));
+	document.getElementById('tdstarstotal').innerHTML = totalStars;
+
+</script>
+	
+	
+
+
+
+</body>
+</html>
