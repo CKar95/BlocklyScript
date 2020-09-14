@@ -15,7 +15,7 @@
 * This folder contais the sql dump (exported database) used for saving user's progression inside the game.
 * You will have to create a database and import the id14854195_blocklyscript.sql
 
-### Use phpMyAdmin to create and import the id14854195_blocklyscript.sql
+### Use phpMyAdmin to create a database and import the id14854195_blocklyscript.sql
 * Open phpMyAdmin and create a database
 * Select the database you just created and find the import tab on the left panel
 * Open the id14854195_blocklyscript.sql and click "Go"
