@@ -9,7 +9,7 @@
 ### The BlocklyScriptGame folder
 * This folder contains the pages of your BlocklyScript website.
 * From login.php you can login to the home page of the game or redirect to register page where you can create a new account
-* Since some files are .php, you have to run a web server (e.g. Apache) and a browser. For example XAMPP is a great PHP development environment with which you can test the game locally by placing the BlocklyScriptGame folder inside of htdocs folder(it's inside of XAMPP installation folder).
+* Since some files are .php, you have to run a web server (e.g. Apache) and a browser. For example XAMPP is a great PHP development environment with which you can test the game locally by placing the BlocklyScriptGame folder inside of htdocs folder(htdocs is inside of XAMPP installation folder).
 * After that open XAMPP (Control Panel) and "Start" Apache and MySQL.
 * Visit localhost/BlocklyScriptDB/login.php from your browser to see the login page.
 
