@@ -31,7 +31,7 @@
 * Do this from levels 1 till 11 (level 12 does not require a connection with the database).
 * Done. Your site is ready and you can create an account.
 
-### Play the game here: https://blocklyscript.000webhostapp.com/login.php
+### Play the game here (link has expiration date): https://blocklyscript.000webhostapp.com/login.php
 
 ## Enjoy :)
 
